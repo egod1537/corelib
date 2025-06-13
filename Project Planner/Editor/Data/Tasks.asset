@@ -1,0 +1,467 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7df9d3ee2217d40a0d4e3fe05dcb0a, type: 3}
+  m_Name: Tasks
+  m_EditorClassIdentifier: 
+  _all:
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-949b9d5e-77ef-41b4-9a0f-ad3a734df145
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-39d6769b-b110-4a65-81fe-dddfdbec0fb2
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "BSP3DTestbedModel \uB9CC\uB4E4\uAE30"
+    _description: "BSP3DTestbedModel\uC740 \uC544\uB798\uC640 \uAC19\uC740 \uAE30\uB2A5\uC744
+      \uD568\n\n - \uC785\uB825\uAC12 size\n - \uB450\uAC00\uC9C0 \uB9F5\uC744 \uC0DD\uC131\uD568\n
+      1. size\uC758 \uC815\uC721\uBA74\uCCB4\n 2. size\uC758 \uB79C\uB364 \uD615\uD0DC\n\n
+      \uC989 1\uBC88 \uD654\uBA74\uC5D0\uC11C \uC27D\uAC8C \uBCF4\uACE0 2\uC5D0\uC11C
+      \uC2E4\uC81C \uC801\uC6A9\uB418\uB294 \uBAA8\uC2B5\uC744 \uAC04\uB7B5\uD788
+      \uBCFC \uC218 \uC788\uB294 \uAC70\uC784\n"
+    _showSubtasks: 0
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849996072433776
+    _updatedTicks: 638850626459458229
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-75cae1f1-f17e-4872-a27e-7f270b3c6b55
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-548f0e41-12aa-415c-9570-e5c9568c7259
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\uB358\uC804 \uC785\uAD6C \uBAA8\uB378\uB9C1 \uCC3E\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 1
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849996101118026
+    _updatedTicks: 638851480722641281
+    _scrollPosition: {x: 0, y: 83}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-ae847ec1-bf65-4e41-8c18-930c656d153b
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-39d6769b-b110-4a65-81fe-dddfdbec0fb2
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "Room Gizmos\uC5D0 \uB744\uC6B0\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849996378963467
+    _updatedTicks: 638850626830333627
+    _scrollPosition: {x: 0, y: 74}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-8d496a86-ce0f-4397-9934-79f1d2ff6d53
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-39d6769b-b110-4a65-81fe-dddfdbec0fb2
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "Projection \uD544\uB4DC \uAD6C\uD558\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 1
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849996547635097
+    _updatedTicks: 638850779537605755
+    _scrollPosition: {x: 0, y: 74}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-4dadfbad-bcab-40ff-81bb-afcb2e9fca6e
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-39d6769b-b110-4a65-81fe-dddfdbec0fb2
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "Projection Gizmos \uADF8\uB9AC\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 1
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849998536471830
+    _updatedTicks: 638850779571408616
+    _scrollPosition: {x: 0, y: 146}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-2b2368a6-a595-471b-a57a-5af32e02bd54
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-39d6769b-b110-4a65-81fe-dddfdbec0fb2
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\uD3EC\uD0C8 \uC0DD\uC131\uD558\uB294 \uD504\uB9AC\uC14B \uB9CC\uB4E4\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849998610279579
+    _updatedTicks: 638849999402665467
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-b492ab1c-4c20-4405-a0e9-ce5b687a67ec
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-548f0e41-12aa-415c-9570-e5c9568c7259
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\uB358\uC804 \uC785\uAD6C \uC5F0\uACB0\uD558\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849998665516689
+    _updatedTicks: 638850000322979924
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-fba5a6c0-26e8-4b7d-8498-7dcf7a864dbf
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\uD3EC\uD0C8 \uBAA8\uB378\uB9C1 \uCC3E\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 1
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849998778560074
+    _updatedTicks: 638851480769641594
+    _scrollPosition: {x: 0, y: 83}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-309e1bfc-9b6c-476e-bdca-95b2c94af227
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "BSP3DRoomPreset \uB9CC\uB4E4\uAE30"
+    _description: "BSP3DRoomCreate\uC758 \uC9D1\uD569"
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849999550095358
+    _updatedTicks: 638850000169556707
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-0c08c735-a0ad-4a8a-a990-af2a211fdad0
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "BSP3DRoomCreator \uB9CC\uB4E4\uAE30"
+    _description: "BSP3DRoomPipeline\uC758 \uC9D1\uD569\n"
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849999706446161
+    _updatedTicks: 638850000076497507
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-c2268171-c273-483b-8f63-b661e659cde1
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "BSP3DRoomPipeLine \uB9CC\uB4E4\uAE30"
+    _description: "\uD558\uB098\uC758 Room\uC758 \uBD80\uC18D \uBD80\uD488"
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638849999810602269
+    _updatedTicks: 638852395739023755
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-33bc7f54-4936-4047-8ae9-9801c1f377c8
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "Room \uD0C0\uC785 \uCD94\uAC00\uD558\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638850000334102083
+    _updatedTicks: 638852395612849679
+    _scrollPosition: {x: 0, y: 83}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-8db80c85-890a-485d-97f8-147b695d09b2
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\uC2DC\uC791, \uD3EC\uD0C8 Room \uC815\uC758\uD558\uAE30"
+    _description: "Generation \uACFC\uC815\uC5D0\uC11C \uBB34\uC870\uAC74 1\uAC1C\uC529\uC740
+      \uC0DD\uC131\uB418\uB3C4\uB85D\n"
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 1
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638850000405274546
+    _updatedTicks: 638852395411147300
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-2edab081-3aa4-4f3f-abc0-1e0b16605cab
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\uB358\uC804 \uD50C\uB85C\uC6B0 \uB9CC\uB4E4\uAE30"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 1
+    _assets: []
+    _showColors: 1
+    _colorIds:
+    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-4936aee5-43ad-450b-a2ee-c66cdb17dd05
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638850000764437437
+    _updatedTicks: 638852395338244865
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-c61166b4-dab1-4fca-9fbf-972a36e4d45e
+    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-5d68f7f6-bb5d-461c-822d-b236eb391734
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "Room Projection Field \uACC4\uC0B0\uB85C\uC9C1 \uC218\uC815"
+    _description: "\uC5EC\uC804\uD788 \uC880 \uC774\uC0C1\uD55C \uBD80\uBD84\uC774
+      \uC788\uC74C.\n\uB300\uCDA9 Room\uC758 padding 3\uC778 \uC815\uB3C4\uAE4C\uC9C0\uBA74
+      projection\uC744 \uACE0\uB824\uD55C\uB2E4\uB358\uAC00?"
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 638852396176390273
+    _updatedTicks: 638852396547299766
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
