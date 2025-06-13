@@ -56,6 +56,11 @@ namespace Corelib.Utils
             return y;
         }
 
+        public float NextFloat(float min, float max)
+        {
+            return min + (max - min) * NextFloat();
+        }
+
         public float NextFloat()
         {
             return NextUInt() * (1.0f / 4294967295.0f);
