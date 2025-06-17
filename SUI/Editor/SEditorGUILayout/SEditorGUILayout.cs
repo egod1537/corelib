@@ -67,5 +67,21 @@ namespace Corelib.SUI
 
         public static SEditorGUILayoutEnum Enum(string label, Enum value)
             => new SEditorGUILayoutEnum(label, value);
+
+        public static SEditorGUILayoutGroup Group(string title)
+            => new SEditorGUILayoutGroup(title);
+
+        public static SEditorGUILayout Separator(float thickness = 1.0f)
+            => new SEditorGUILayout(() =>
+            {
+                GUILayout.Space(1f);
+                Rect rect = EditorGUILayout.GetControlRect(false, thickness);
+                rect.height = thickness;
+                EditorGUI.DrawRect(rect, new Color(0.3f, 0.3f, 0.3f));
+                GUILayout.Space(1f);
+            });
+
+        public static SEditorGUILayoutFoldGroup FoldGroup(string label, bool foldout)
+            => new SEditorGUILayoutFoldGroup(label, foldout);
     }
 }

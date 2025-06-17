@@ -67,6 +67,12 @@ namespace Corelib.Utils
             vec /= len;
             return vec;
         }
+
+        public static Vector3 SetX(this ref Vector3 vec, float newX)
+        {
+            vec.x = newX;
+            return vec;
+        }
     }
 }
 

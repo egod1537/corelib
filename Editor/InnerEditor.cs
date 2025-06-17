@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 namespace Corelib.Utils
 {
+    //TODO: convert to composite
     public class InnerEditor<T> : Editor where T : Object
     {
         protected T script;
@@ -65,6 +66,13 @@ namespace Corelib.Utils
         {
             InnerGUI<T> newGUI = new P().SetScript(script).SetEditor(this);
             innerGUIs.Add(newGUI);
+            newGUI.OnEnable();
+            return newGUI;
+        }
+
+        public static InnerGUI<T> CreateInnerGUI<P>(T script) where P : InnerGUI<T>, new()
+        {
+            InnerGUI<T> newGUI = new P().SetScript(script);
             newGUI.OnEnable();
             return newGUI;
         }

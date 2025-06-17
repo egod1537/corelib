@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 namespace Corelib.Utils
 {
@@ -81,5 +82,21 @@ namespace Corelib.Utils
 
         public static Transform FindInChild(this Transform transform, string name)
             => transform.Cast<Transform>().First(t => t.name == name);
+
+        public static Transform Reset(this Transform transform)
+        {
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+            return transform;
+        }
+
+        public static Transform ResetLocal(this Transform transform)
+        {
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+            return transform;
+        }
     }
 }
