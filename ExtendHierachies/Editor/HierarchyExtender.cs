@@ -1,4 +1,6 @@
 
+using Ingame;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,17 +8,19 @@ using UnityEngine.UI;
 namespace Corelib.Utils
 {
     [InitializeOnLoad]
-    public static class HierarchyButtonExtender
+    public static class HierarchyExtender
     {
         private static Rect rect = new Rect();
+        private static Rect selectionRect = new Rect();
 
-        static HierarchyButtonExtender()
+        static HierarchyExtender()
         {
             EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyGUI;
         }
 
         static void OnHierarchyGUI(int instanceID, Rect selectionRect)
         {
+            HierarchyExtender.selectionRect = selectionRect;
             rect = new Rect(selectionRect.xMax, selectionRect.y, 0, selectionRect.height);
 
             Object obj = EditorUtility.InstanceIDToObject(instanceID);
@@ -31,6 +35,7 @@ namespace Corelib.Utils
 
             ExtendRectTrasnform(gameObject);
             ExtendGUILayoutGroup(gameObject);
+            ExtendUIComponentBehaviour(gameObject);
         }
 
         static void ExtendRectTrasnform(GameObject gameObject)
@@ -74,6 +79,24 @@ namespace Corelib.Utils
                     child.name = $"{i}";
                 }
             }
+        }
+
+        static void ExtendUIComponentBehaviour(GameObject gameObject)
+        {
+            int prevDepth = GUI.depth;
+            GUI.depth = -100;
+            if (gameObject.GetComponent<UIComponentBahaviour>() != null)
+            {
+                float width = 48f;
+                Rect newRect = new Rect(rect)
+                {
+                    x = 200f,
+                    height = 2f,
+                    width = 100f,
+                };
+                EditorGUI.DrawRect(newRect, Color.green);
+            }
+            GUI.depth = prevDepth;
         }
     }
 }
