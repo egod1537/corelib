@@ -13,41 +13,6 @@ MonoBehaviour:
   m_Name: Tasks
   m_EditorClassIdentifier: 
   _all:
-  - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-949b9d5e-77ef-41b4-9a0f-ad3a734df145
-    _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-39d6769b-b110-4a65-81fe-dddfdbec0fb2
-    _lock: 0
-    _done: 0
-    _isParentSubtask: 0
-    _name: "BSP3DTestbedModel \uB9CC\uB4E4\uAE30"
-    _description: "BSP3DTestbedModel\uC740 \uC544\uB798\uC640 \uAC19\uC740 \uAE30\uB2A5\uC744
-      \uD568\n\n - \uC785\uB825\uAC12 size\n - \uB450\uAC00\uC9C0 \uB9F5\uC744 \uC0DD\uC131\uD568\n
-      1. size\uC758 \uC815\uC721\uBA74\uCCB4\n 2. size\uC758 \uB79C\uB364 \uD615\uD0DC\n\n
-      \uC989 1\uBC88 \uD654\uBA74\uC5D0\uC11C \uC27D\uAC8C \uBCF4\uACE0 2\uC5D0\uC11C
-      \uC2E4\uC81C \uC801\uC6A9\uB418\uB294 \uBAA8\uC2B5\uC744 \uAC04\uB7B5\uD788
-      \uBCFC \uC218 \uC788\uB294 \uAC70\uC784\n"
-    _showSubtasks: 0
-    _tasksIds: []
-    _hideCompletedChecklistItems: 0
-    _showTags: 0
-    _tagIds: []
-    _showAssets: 0
-    _assets: []
-    _showColors: 0
-    _colorIds:
-    - eb1d49a671b8b4145ff07bdf36e3f5c7a7518754-7641b145-24d5-40c2-94ae-060cf185ee3d
-    _screenshot: []
-    _showScreenshots: 0
-    _createdTicks: 638849996072433776
-    _updatedTicks: 638850626459458229
-    _scrollPosition: {x: 0, y: 0}
-    _boardWindow_SearchShow: 1
-    _taskWindow_ShowSubtask: 0
-    _treeWindow_SearchShow: 1
-    treeWindowShowSubtasksAnimation:
-      m_Target: 0
-      speed: 2
-      m_Value: 0
-    _treeWindow_ShowSubtasks: 0
   - _id: 04e3fe181f79a711952e1155fc0af6cc92647696-75cae1f1-f17e-4872-a27e-7f270b3c6b55
     _parentID: 04e3fe181f79a711952e1155fc0af6cc92647696-548f0e41-12aa-415c-9570-e5c9568c7259
     _lock: 0

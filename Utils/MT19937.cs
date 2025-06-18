@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Corelib.Utils
 {
@@ -54,6 +55,22 @@ namespace Corelib.Utils
             y ^= (y >> 18);
 
             return y;
+        }
+
+        public T Choice<T>(IList<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            if (collection.Count == 0)
+            {
+                throw new ArgumentException("Collection cannot be empty.", nameof(collection));
+            }
+
+            int randomIndex = NextInt(0, collection.Count);
+            return collection[randomIndex];
         }
 
         public float NextFloat(float min, float max)
