@@ -36,5 +36,7 @@ namespace Corelib.SUI
                 a.Render();
                 b.Render();
             });
+
+        public static SUIElement Empty() => new SUIElement(() => { });
     }
 }
