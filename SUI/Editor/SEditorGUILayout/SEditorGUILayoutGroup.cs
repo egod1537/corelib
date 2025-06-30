@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,7 @@ namespace Corelib.SUI
     {
         private SUIElement content;
         private string title = "";
+        private Func<bool> where = () => true;
 
         public SEditorGUILayoutGroup(string title)
         {
@@ -17,6 +19,12 @@ namespace Corelib.SUI
         public SEditorGUILayoutGroup Content(SUIElement content = null)
         {
             this.content = content;
+            return this;
+        }
+
+        public SEditorGUILayoutGroup Where(Func<bool> callback)
+        {
+            this.where = callback;
             return this;
         }
 
@@ -31,7 +39,11 @@ namespace Corelib.SUI
                     .Align(TextAnchor.MiddleCenter)
                 )
                 + SEditorGUILayout.Separator()
-                + SEditorGUILayout.Action(() => content?.Render())
+                + SEditorGUILayout.Action(() =>
+                {
+                    if (where())
+                        content?.Render();
+                })
             )
             .Render();
         }

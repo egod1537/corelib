@@ -29,7 +29,7 @@ namespace Corelib.SUI
 
         public override void Render()
         {
-            UObject newValue = EditorGUILayout.ObjectField(label, value, type, false);
+            UObject newValue = EditorGUILayout.ObjectField(label, value, type, true);
             if (newValue != value)
             {
                 value = newValue;

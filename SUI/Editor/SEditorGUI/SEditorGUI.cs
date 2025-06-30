@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,5 +39,13 @@ namespace Corelib.SUI
 
         public static SEditorGUILayoutMinMaxSlider MinMaxSlider(float minValue, float maxValue)
             => new SEditorGUILayoutMinMaxSlider(minValue, maxValue);
+
+        public static void ChangeCheck<T>(T target, SUIElement element) where T : Object
+        {
+            EditorGUI.BeginChangeCheck();
+            element?.Render();
+            if (EditorGUI.EndChangeCheck())
+                EditorUtility.SetDirty(target);
+        }
     }
 }

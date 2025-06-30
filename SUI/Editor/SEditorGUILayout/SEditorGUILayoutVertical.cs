@@ -1,5 +1,5 @@
+using System;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace Corelib.SUI
@@ -8,6 +8,7 @@ namespace Corelib.SUI
     {
         private SUIElement content;
         private string style = "";
+        private Func<bool> where = () => true;
 
         public SEditorGUILayoutVertical()
         {
@@ -31,10 +32,17 @@ namespace Corelib.SUI
             return this;
         }
 
+        public SEditorGUILayoutVertical Where(Func<bool> callback)
+        {
+            this.where = callback;
+            return this;
+        }
+
         public override void Render()
         {
             EditorGUILayout.BeginVertical(style);
-            content?.Render();
+            if (where())
+                content?.Render();
             EditorGUILayout.EndVertical();
         }
     }

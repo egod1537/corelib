@@ -39,6 +39,9 @@ namespace Corelib.SUI
         public static SUIElement Action(UnityAction action) =>
             new SEditorGUILayout(() => action?.Invoke());
 
+        public static SEditorGUILayoutVector3 Vector3(string prefix, Vector3 value)
+            => new SEditorGUILayoutVector3(prefix, value);
+
         public static SEditorGUILayoutVector3Int Vector3Int(string prefix, Vector3Int value)
             => new SEditorGUILayoutVector3Int(prefix, value);
 
@@ -83,5 +86,8 @@ namespace Corelib.SUI
 
         public static SEditorGUILayoutFoldGroup FoldGroup(string label, bool foldout)
             => new SEditorGUILayoutFoldGroup(label, foldout);
+
+        public static SEditorGUILayout Space(float space)
+            => new SEditorGUILayout(() => EditorGUILayout.Space(space));
     }
 }
