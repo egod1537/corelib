@@ -5,6 +5,9 @@ namespace Corelib.Utils
 {
     public static class ExList
     {
+        public static T Front<T>(this List<T> list) => list[0];
+        public static T Back<T>(this List<T> list) => list[list.Count - 1];
+
         public static void Swap<T>(this List<T> list, int idx1, int idx2)
         {
             (list[idx1], list[idx2]) = (list[idx2], list[idx1]);

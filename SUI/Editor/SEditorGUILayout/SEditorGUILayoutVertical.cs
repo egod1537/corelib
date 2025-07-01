@@ -1,5 +1,6 @@
 using System;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Corelib.SUI
@@ -8,6 +9,7 @@ namespace Corelib.SUI
     {
         private SUIElement content;
         private string style = "";
+        private GUIStyle guiStyle;
         private Func<bool> where = () => true;
 
         public SEditorGUILayoutVertical()
@@ -18,6 +20,11 @@ namespace Corelib.SUI
         public SEditorGUILayoutVertical(string style)
         {
             this.style = style;
+        }
+
+        public SEditorGUILayoutVertical(GUIStyle guiStyle)
+        {
+            this.guiStyle = guiStyle;
         }
 
         public SEditorGUILayoutVertical Content(SUIElement content = null)
@@ -40,7 +47,11 @@ namespace Corelib.SUI
 
         public override void Render()
         {
-            EditorGUILayout.BeginVertical(style);
+            if (guiStyle != null)
+                EditorGUILayout.BeginVertical(guiStyle);
+            else
+                EditorGUILayout.BeginVertical(style);
+
             if (where())
                 content?.Render();
             EditorGUILayout.EndVertical();

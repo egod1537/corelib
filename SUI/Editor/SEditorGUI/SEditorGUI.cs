@@ -47,5 +47,8 @@ namespace Corelib.SUI
             if (EditorGUI.EndChangeCheck())
                 EditorUtility.SetDirty(target);
         }
+
+        public static SEditorGUIDisabledGroup DisabledGroup(bool disabled)
+            => new SEditorGUIDisabledGroup(disabled);
     }
 }

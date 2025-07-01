@@ -24,6 +24,9 @@ namespace Corelib.SUI
         public static SEditorGUILayoutVertical Vertical(string style = "") =>
             new SEditorGUILayoutVertical(style);
 
+        public static SEditorGUILayoutVertical Vertical(GUIStyle guiStyle) =>
+            new SEditorGUILayoutVertical(guiStyle);
+
         public static SEditorGUILayoutToggle Toggle(string label, bool value)
             => new SEditorGUILayoutToggle(label, value);
 

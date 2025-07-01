@@ -158,6 +158,79 @@ namespace FunnelAlgorithm
             return true;
         }
 
+        public static bool CreateVertices3DNew(IEnumerable<Triangle> triangles, out List<Vector3> left, out List<Vector3> right)
+        {
+            left = new(); right = new();
+
+            // 三角形リストから共有辺のリストを作成する
+            var commonEdges = new List<Edge>();
+            foreach (var pair in triangles.MakePairs())
+            {
+                // 前後の三角形から共有辺を探す
+                var commonEdge = pair.Left.FindCommonEdge(pair.Right);
+                if (commonEdge == null)
+                {
+                    // 共有辺が見つからない場合は連結してないので失敗
+                    return false;
+                }
+
+                commonEdges.Add(commonEdge);
+            }
+
+            // ３次元における頂点配列を初期化する。 長さは 始点 + 終点 + 共有辺の数 になる
+            Vector3[] leftVertices3d = new Vector3[commonEdges.Count + 2];
+            Vector3[] rightVertices3d = new Vector3[commonEdges.Count + 2];
+
+            // 始点を求める。始点は最初の三角形の頂点の内、最初の共有辺に向かいあう頂点
+            var startPoint = triangles.First().FindOppositeVertex(commonEdges.First()).Value;
+            // 始点を両サイドの頂点配列に追加
+            leftVertices3d[0] = rightVertices3d[0] = startPoint;
+
+            // 共有辺の頂点を左、右に分けていく
+            var i = 1;
+            foreach (var commonEdge in commonEdges)
+            {
+                var nextOrigin = Vector3.zero;
+
+                if (i == 1)
+                {
+                    leftVertices3d[i] = commonEdge.A;
+                    rightVertices3d[i] = commonEdge.B;
+                    nextOrigin = leftVertices3d[i];
+                }
+                else
+                {
+                    // 頂点配列の最後と一致するかを調べて一致する場合はそのサイドに配列に追加する。一致しないほうは逆サイドに追加する。　必ずどちらかに一致する
+                    if (commonEdge.A.Equals(leftVertices3d[i - 1]) || commonEdge.B.Equals(rightVertices3d[i - 1]))
+                    {
+                        leftVertices3d[i] = commonEdge.A;
+                        rightVertices3d[i] = commonEdge.B;
+
+                        nextOrigin = rightVertices3d[i];
+                    }
+                    else
+                    {
+                        leftVertices3d[i] = commonEdge.B;
+                        rightVertices3d[i] = commonEdge.A;
+
+                        nextOrigin = leftVertices3d[i];
+                    }
+                }
+
+                i++;
+            }
+
+            // 終点を求める。終点は最後の三角形の頂点の内、最後の共有辺に向かいある頂点
+            var endPoint = triangles.Last().FindOppositeVertex(commonEdges.Last()).Value;
+            // 終点を両サイドの頂点配列に追加
+            leftVertices3d[leftVertices3d.Length - 1] = rightVertices3d[leftVertices3d.Length - 1] = endPoint;
+
+            left = leftVertices3d.ToList();
+            right = rightVertices3d.ToList();
+
+            return true;
+        }
+
         private void CopyVertices3DToVertices2D()
         {
             // 3次元における頂点配列をそのままコピーする

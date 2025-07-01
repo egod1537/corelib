@@ -16,6 +16,8 @@ namespace FunnelAlgorithm
         private Vector3[] normals;
         public Vector3[] Normals { get { return normals; } private set { normals = value; } }
 
+        public int Count { get => positions.Length; }
+
         public void Clear()
         {
             if (positions != null)
