@@ -42,6 +42,9 @@ namespace Corelib.SUI
         public static SUIElement Action(UnityAction action) =>
             new SEditorGUILayout(() => action?.Invoke());
 
+        public static SEditorGUILayoutText Text(string prefix, string text = "")
+            => new SEditorGUILayoutText(prefix, text);
+
         public static SEditorGUILayoutVector3 Vector3(string prefix, Vector3 value)
             => new SEditorGUILayoutVector3(prefix, value);
 
