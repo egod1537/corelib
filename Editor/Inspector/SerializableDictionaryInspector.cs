@@ -11,18 +11,30 @@ namespace Corelib.Utils
 {
     public static class SerializableDictionaryInspector
     {
+        private static object _newKey;
+        private static object _newValue;
+        private static object _keyToRemove;
+
+        private static bool _wantsToAdd;
+        private static bool _wantsToRemove;
+
+        private static int _targetInstanceID;
+
         public static SUIElement Render<TKey, TValue>(
             SerializableDictionary<TKey, TValue> dictionary,
             Action onModified = null)
         {
             if (dictionary == null) return SEditorGUILayout.Label($"Dictionary<{nameof(TKey)}, {nameof(TValue)}>: (null)");
 
-            TKey keyToRemove = default;
-            bool wantsToRemove = false;
-
-            TKey newKey = default;
-            TValue newValue = default;
-            bool wantsToAdd = false;
+            var dictionaryID = dictionary.GetHashCode();
+            if (dictionaryID != _targetInstanceID)
+            {
+                _newKey = default(TKey);
+                _newValue = default(TValue);
+                _wantsToAdd = false;
+                _wantsToRemove = false;
+                _targetInstanceID = dictionaryID;
+            }
 
             var container = SEditorGUILayout.Vertical();
             var elements = new List<SUIElement>();
@@ -43,22 +55,38 @@ namespace Corelib.Utils
                                 onModified?.Invoke();
                             }) +
                             SEditorGUILayout.Button("-").Width(20)
-                                .OnClick(() => { keyToRemove = currentKey; wantsToRemove = true; })
+                                .OnClick(() =>
+                                {
+                                    _keyToRemove = currentKey;
+                                    _wantsToRemove = true;
+                                    _targetInstanceID = dictionaryID;
+                                })
                         )
                 );
             }
 
-            elements.Add(SEditorGUILayout.Space(5));
+            elements.Add(SEditorGUILayout.Separator());
+            elements.Add(SEditorGUILayout.Space(2));
+
             elements.Add(
                 SEditorGUILayout.Horizontal()
                     .Content(
-                        RenderField("New Key", newKey, val => newKey = val) +
-                        RenderField("New Value", newValue, val => newValue = val) +
+                        RenderField("New Key", (TKey)_newKey, val => _newKey = val) +
+                        RenderField("New Value", (TValue)_newValue, val => _newValue = val) +
                         SEditorGUILayout.Button("+").Width(20)
                             .OnClick(() =>
                             {
-                                if (newKey != null && !dictionary.ContainsKey(newKey)) wantsToAdd = true;
-                                else Debug.LogWarning($"Key '{newKey}' is null or already exists.");
+                                TKey key = (TKey)_newKey;
+                                if (key != null && !dictionary.ContainsKey(key))
+                                {
+                                    _wantsToAdd = true;
+                                    _targetInstanceID = dictionaryID;
+                                }
+                                else
+                                {
+                                    var keyString = key?.ToString() ?? "null";
+                                    Debug.LogWarning($"Key '{keyString}' is null or already exists.");
+                                }
                             })
                     )
             );
@@ -70,15 +98,19 @@ namespace Corelib.Utils
                 container.Content(elements.Aggregate((curr, next) => curr + next));
             }
 
-            if (wantsToRemove)
+            if (_wantsToRemove && _targetInstanceID == dictionaryID)
             {
-                dictionary.Remove(keyToRemove);
+                dictionary.Remove((TKey)_keyToRemove);
+                _wantsToRemove = false;
                 onModified?.Invoke();
             }
 
-            if (wantsToAdd)
+            if (_wantsToAdd && _targetInstanceID == dictionaryID)
             {
-                dictionary.Add(newKey, newValue);
+                dictionary.Add((TKey)_newKey, (TValue)_newValue);
+                _newKey = default(TKey);
+                _newValue = default(TValue);
+                _wantsToAdd = false;
                 onModified?.Invoke();
             }
 
@@ -110,6 +142,11 @@ namespace Corelib.Utils
                 if (type.IsEnum)
                 {
                     return SEditorGUILayout.Enum(label, (Enum)(object)value)
+                        .OnValueChanged(v => onValueChanged?.Invoke((T)(object)v));
+                }
+                if (typeof(ScriptableObject).IsAssignableFrom(type))
+                {
+                    return SEditorGUILayout.Object(label, value as ScriptableObject, type)
                         .OnValueChanged(v => onValueChanged?.Invoke((T)(object)v));
                 }
                 if (type == typeof(GameObject))

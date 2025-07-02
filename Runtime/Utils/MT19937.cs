@@ -98,6 +98,9 @@ namespace Corelib.Utils
         {
             return new MT19937((uint)seed);
         }
+
+        public static float ImNextFloat(float min, float max)
+            => Create().NextFloat(min, max);
     }
 
 }

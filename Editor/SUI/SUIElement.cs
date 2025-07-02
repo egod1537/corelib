@@ -8,7 +8,7 @@ namespace Corelib.SUI
         public Rect? rect;
         protected readonly UnityAction onRender;
 
-        protected SUIElement()
+        public SUIElement()
         {
 
         }
