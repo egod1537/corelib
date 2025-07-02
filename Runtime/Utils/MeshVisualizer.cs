@@ -8,7 +8,7 @@ namespace Corelib.Utils
     public class MeshVisualizer : ILifecycleInjectable
     {
         private readonly MonoBehaviour mono;
-        private Transform debugRoot;
+        private Transform meshRoot;
 
         [Serializable]
         public class ChildMeshDictionary : SerializableDictionary<string, GameObject> { }
@@ -28,15 +28,15 @@ namespace Corelib.Utils
             var rootTransform = mono.transform.Find(MESH_ROOT_NAME);
             if (rootTransform == null)
             {
-                debugRoot = new GameObject(MESH_ROOT_NAME).transform;
-                debugRoot.SetParent(mono.transform);
+                meshRoot = new GameObject(MESH_ROOT_NAME).transform;
+                meshRoot.SetParent(mono.transform);
             }
             else
             {
-                debugRoot = rootTransform;
+                meshRoot = rootTransform;
             }
 
-            foreach (Transform child in debugRoot)
+            foreach (Transform child in meshRoot)
             {
                 child.gameObject.SetActive(false);
             }
@@ -45,9 +45,9 @@ namespace Corelib.Utils
 
         public void OnDisable()
         {
-            if (debugRoot != null)
+            if (meshRoot != null)
             {
-                UnityEngine.Object.DestroyImmediate(debugRoot.gameObject);
+                UnityEngine.Object.DestroyImmediate(meshRoot.gameObject);
             }
             childMeshes?.Clear();
         }
@@ -72,7 +72,7 @@ namespace Corelib.Utils
             else
             {
                 debugObject = new GameObject(key);
-                debugObject.transform.SetParent(debugRoot);
+                debugObject.transform.SetParent(meshRoot);
 
                 var meshFilter = debugObject.AddComponent<MeshFilter>();
                 meshRenderer = debugObject.AddComponent<MeshRenderer>();
