@@ -24,6 +24,9 @@ namespace Corelib.Utils
         private void OnEnable()
         {
             _searchField = new SearchField();
+            titleContent = EditorGUIUtility.TrTextContent(
+                "SO Presets",
+                EditorGUIUtility.IconContent("ScriptableObject Icon").image);
         }
 
         private void OnGUI()
