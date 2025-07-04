@@ -20,10 +20,21 @@ namespace Corelib.Utils
                     continue;
 
                 var fieldType = field.FieldType;
-                var ctor = fieldType.GetConstructor(new[] { target.GetType() });
+
+                ConstructorInfo ctor = null;
+                foreach (var constructor in fieldType.GetConstructors())
+                {
+                    var parameters = constructor.GetParameters();
+                    if (parameters.Length == 1 && parameters[0].ParameterType.IsAssignableFrom(target.GetType()))
+                    {
+                        ctor = constructor;
+                        break;
+                    }
+                }
+
                 if (ctor == null)
                 {
-                    Debug.LogError($"[LifecycleInject] {fieldType.Name}에 {target.GetType().Name} 생성자가 없음");
+                    Debug.LogError($"[LifecycleInject] {fieldType.Name}에 {target.GetType().Name}을 인자로 받는 적합한 생성자가 없음");
                     continue;
                 }
 
@@ -44,14 +55,13 @@ namespace Corelib.Utils
                 if (field.GetCustomAttribute<LifecycleInjectAttribute>() == null)
                     continue;
 
-                var value = field.GetValue(target);
-                if (value is not ILifecycleInjectable injectable)
-                    continue;
-
-                if (enable)
-                    injectable.OnEnable();
-                else
-                    injectable.OnDisable();
+                if (field.GetValue(target) is ILifecycleInjectable injectable)
+                {
+                    if (enable)
+                        injectable.OnEnable();
+                    else
+                        injectable.OnDisable();
+                }
             }
         }
     }

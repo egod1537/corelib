@@ -4,15 +4,19 @@ using UnityEngine;
 
 namespace Corelib.Utils
 {
-    public abstract class ViewBehaviour : MonoBehaviour
+    public abstract class ViewBehaviour<R> : MonoBehaviour where R : ViewBaseBehaviour
     {
         [HideInInspector]
-        public ViewBehaviour parentView;
+        public R rootView;
         [HideInInspector]
-        public List<ViewBehaviour> childViews;
+        public ViewBehaviour<R> parentView;
+        [HideInInspector]
+        public List<ViewBehaviour<R>> childViews = new List<ViewBehaviour<R>>();
 
-        protected T GetChildView<T>() where T : ViewBehaviour
-            => (T)childViews.First(child => child is T);
+        protected T GetChildView<T>() where T : ViewBehaviour<R>
+        {
+            return (T)childViews.FirstOrDefault(child => child is T);
+        }
 
         protected void Awake()
         {
@@ -21,28 +25,44 @@ namespace Corelib.Utils
 
         private void InitializeViewComponent()
         {
-            Transform tr = transform.parent;
-            while (tr != null)
+            rootView = GetComponentInParent<R>();
+
+            parentView = GetParentView();
+            if (parentView != null)
             {
-                ViewBehaviour ui = tr.GetComponent<ViewBehaviour>();
-                if (ui != null)
-                {
-                    ui.childViews.Add(this);
-                    parentView = ui;
-                    break;
-                }
-                tr = tr.parent;
+                parentView.childViews.Add(this);
             }
         }
+
+        private ViewBehaviour<R> GetParentView()
+        {
+            Transform parentTransform = transform.parent;
+            while (parentTransform != null)
+            {
+                var parent = parentTransform.GetComponent<ViewBehaviour<R>>();
+                if (parent != null)
+                {
+                    return parent;
+                }
+                parentTransform = parentTransform.parent;
+            }
+            return null;
+        }
+
         public abstract void Render();
 
-        public List<T> FindAllChild<T>() where T : ViewBehaviour
+        public List<T> FindAllChild<T>() where T : ViewBehaviour<R>
         {
-            List<T> childs = new();
-            if (this is T) childs.Add(this as T);
+            List<T> childs = new List<T>();
+            if (this is T)
+            {
+                childs.Add(this as T);
+            }
 
             foreach (var child in childViews)
+            {
                 childs.AddRange(child.FindAllChild<T>());
+            }
             return childs;
         }
     }
