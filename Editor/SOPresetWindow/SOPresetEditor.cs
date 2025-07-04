@@ -1,16 +1,29 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.IMGUI.Controls;
+using System.Linq;
 
 namespace Corelib.Utils
 {
     public class SOPresetEditor : EditorWindow
     {
         private SOPresetConfig _config;
+        private UnityEngine.Object _selectedAsset;
+        private Editor _assetEditor;
+
+        private SearchField _searchField;
+        private string _searchText = string.Empty;
+        private int _selectedPresetIndex = -1;
 
         [MenuItem("Tools/SO Preset Editor")]
         public static void ShowWindow()
         {
             GetWindow<SOPresetEditor>("SO Presets");
+        }
+
+        private void OnEnable()
+        {
+            _searchField = new SearchField();
         }
 
         private void OnGUI()
@@ -29,21 +42,72 @@ namespace Corelib.Utils
 
             GUILayout.Label("Presets", EditorStyles.boldLabel);
 
-            foreach (var preset in _config.presets)
+            if (_searchField != null)
             {
-                if (GUILayout.Button(preset.presetName))
+                _searchText = _searchField.OnGUI(_searchText);
+            }
+            else
+            {
+                _searchText = EditorGUILayout.TextField(_searchText);
+            }
+
+            var filteredPresets = _config.presets
+                .Where(p => string.IsNullOrEmpty(_searchText) || p.presetName.IndexOf(_searchText, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            var presetNames = filteredPresets.Select(p => p.presetName).ToArray();
+
+            int newIndex = _selectedPresetIndex;
+            if (presetNames.Length > 0)
+            {
+                newIndex = EditorGUILayout.Popup("Select Preset", Mathf.Clamp(_selectedPresetIndex, 0, presetNames.Length - 1), presetNames);
+            }
+            else
+            {
+                GUILayout.Label("No presets found.");
+                newIndex = -1;
+            }
+
+            if (newIndex != _selectedPresetIndex)
+            {
+                _selectedPresetIndex = newIndex;
+                if (_selectedPresetIndex >= 0)
                 {
-                    var asset = Resources.Load(preset.resourcePath);
-                    if (asset != null)
-                    {
-                        Selection.activeObject = asset;
-                        EditorGUIUtility.PingObject(asset);
-                    }
-                    else
-                    {
-                        Debug.LogError($"[SOPresetEditor] Asset not found at Resources path: '{preset.resourcePath}'");
-                    }
+                    SelectPreset(filteredPresets[_selectedPresetIndex]);
                 }
+            }
+
+            if (_selectedAsset != null && _assetEditor != null)
+            {
+                EditorGUILayout.Space();
+                GUILayout.Label($"Editing: {_selectedAsset.name}", EditorStyles.boldLabel);
+                _assetEditor.OnInspectorGUI();
+            }
+        }
+
+        private void SelectPreset(SOPreset preset)
+        {
+            var asset = Resources.Load(preset.resourcePath);
+            if (asset != null)
+            {
+                _selectedAsset = asset;
+                if (_assetEditor != null)
+                {
+                    DestroyImmediate(_assetEditor);
+                }
+                _assetEditor = Editor.CreateEditor(_selectedAsset);
+            }
+            else
+            {
+                Debug.LogError($"[SOPresetEditor] Asset not found at Resources path: '{preset.resourcePath}'");
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_assetEditor != null)
+            {
+                DestroyImmediate(_assetEditor);
             }
         }
     }
