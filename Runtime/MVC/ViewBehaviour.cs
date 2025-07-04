@@ -18,7 +18,7 @@ namespace Corelib.Utils
             return (T)childViews.FirstOrDefault(child => child is T);
         }
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             InitializeViewComponent();
         }

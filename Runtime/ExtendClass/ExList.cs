@@ -42,14 +42,14 @@ namespace Corelib.Utils
             return list.Choice(MT19937.Create());
         }
 
-        public static T Choice<T>(this List<T> list, MT19937 mt = null)
+        public static T Choice<T>(this List<T> list, MT19937 rng = null)
         {
             if (list.Count == 0)
                 return default(T);
-            if (mt == null)
-                mt = MT19937.Create();
+            if (rng == null)
+                rng = MT19937.Create();
 
-            return list[mt.NextInt(0, list.Count - 1)];
+            return list[rng.NextInt(0, list.Count - 1)];
         }
 
         public static List<T> Shuffle<T>(this List<T> list, MT19937 rng = null)
