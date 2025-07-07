@@ -95,5 +95,8 @@ namespace Corelib.SUI
 
         public static SEditorGUILayout Space(float space)
             => new SEditorGUILayout(() => EditorGUILayout.Space(space));
+
+        public static SEditorGUILayoutHelpBox HelpBox(string label, MessageType messageType)
+            => new SEditorGUILayoutHelpBox(label, messageType);
     }
 }

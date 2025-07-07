@@ -6,7 +6,7 @@ namespace Corelib.Utils
     public class PSphereArea : MonoBehaviour
     {
         public float radius = 0.5f;
-        public Color gizmoColor = new(0f, 1f, 0f, 0.5f);
+        public Color gizmoColor = new(1f, 0.2f, 0f, 0.5f);
 
         public PSphere Sphere => new PSphere(transform.position, radius);
 

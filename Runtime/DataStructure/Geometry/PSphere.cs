@@ -51,5 +51,8 @@ namespace Corelib.Utils
         }
 
         public float Volume => 4f / 3f * Mathf.PI * radius * radius * radius;
+
+        public Vector3Int Min => Vector3Int.FloorToInt(center - Vector3.one * radius);
+        public Vector3Int Max => Vector3Int.CeilToInt(center + Vector3.one * radius);
     }
 }

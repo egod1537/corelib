@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,10 +10,17 @@ namespace Corelib.SUI
         private readonly string label;
         private UnityAction onClick;
         private float? width;
+        private Func<bool> where = () => true;
 
         public SEditorGUILayoutButton(string label)
         {
             this.label = label;
+        }
+
+        public SEditorGUILayoutButton Where(Func<bool> where)
+        {
+            this.where = where;
+            return this;
         }
 
         public SEditorGUILayoutButton OnClick(UnityAction onClick)
@@ -29,6 +37,7 @@ namespace Corelib.SUI
 
         public override void Render()
         {
+            if (!where()) return;
             var options = new List<GUILayoutOption>();
 
             if (width != null)

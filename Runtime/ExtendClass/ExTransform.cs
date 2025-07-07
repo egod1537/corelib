@@ -80,7 +80,18 @@ namespace Corelib.Utils
         }
 
         public static Transform FindInChild(this Transform transform, string name)
-            => transform.Cast<Transform>().First(t => t.name == name);
+            => transform.Cast<Transform>().FirstOrDefault(t => t.name == name);
+
+
+        public static Transform FindInAllChildren(this Transform root, string name, bool isExcludeRoot = false)
+        {
+            return root.GetComponentsInChildren<Transform>(true)
+                       .FirstOrDefault(t =>
+                       {
+                           if (isExcludeRoot && t == root) return false;
+                           return t.name == name;
+                       });
+        }
 
         public static Transform Reset(this Transform transform)
         {
