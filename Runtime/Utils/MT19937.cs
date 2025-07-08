@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Corelib.Utils
 {
@@ -69,8 +70,68 @@ namespace Corelib.Utils
                 throw new ArgumentException("Collection cannot be empty.", nameof(collection));
             }
 
-            int randomIndex = NextInt(0, collection.Count);
+            int randomIndex = NextInt(0, collection.Count - 1);
             return collection[randomIndex];
+        }
+
+        private int WeightedIndex(IList<float> weights)
+        {
+            if (weights == null)
+                throw new ArgumentNullException(nameof(weights));
+            if (weights.Count == 0)
+                throw new ArgumentException("weights cannot be empty", nameof(weights));
+
+            float totalWeight = 0.0f;
+            for (int i = 0; i < weights.Count; i++)
+                totalWeight += weights[i];
+
+            float randomNumber = NextFloat(0, totalWeight);
+
+            for (int i = 0; i < weights.Count; i++)
+            {
+                if (randomNumber < weights[i])
+                    return i;
+                randomNumber -= weights[i];
+            }
+
+            return weights.Count - 1;
+        }
+
+        public T WeightedChoice<T>(IList<T> collection, IList<float> weights)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+            if (weights == null)
+                throw new ArgumentNullException(nameof(weights));
+            if (collection.Count != weights.Count)
+                throw new ArgumentException("weights must have the same size as the collection");
+
+            int idx = WeightedIndex(weights);
+            return collection[idx];
+        }
+
+        public List<T> WeightedShuffle<T>(IList<T> collection, IList<float> weights)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+            if (weights == null)
+                throw new ArgumentNullException(nameof(weights));
+            if (collection.Count != weights.Count)
+                throw new ArgumentException("weights must have the same size as the collection");
+
+            List<T> items = new(collection);
+            List<float> wts = new(weights);
+            List<T> result = new(items.Count);
+
+            while (items.Count > 0)
+            {
+                int idx = WeightedIndex(wts);
+                result.Add(items[idx]);
+                items.RemoveAt(idx);
+                wts.RemoveAt(idx);
+            }
+
+            return result;
         }
 
         public float NextFloat(float min, float max)
@@ -85,7 +146,10 @@ namespace Corelib.Utils
 
         public int NextInt(int min, int max)
         {
-            return min + (int)(NextFloat() * (max - min));
+            float f = NextFloat();
+            float scaled = f * (max - min + 1);
+            int rounded = (int)(scaled);
+            return min + rounded;
         }
 
         public static MT19937 Create()

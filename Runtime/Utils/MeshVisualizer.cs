@@ -117,6 +117,7 @@ namespace Corelib.Utils
 
         public void HideMeshAll()
         {
+            if (childMeshes == null) return;
             foreach (string key in childMeshes.Keys)
                 HideMesh(key);
         }

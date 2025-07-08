@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace Corelib.Utils
 {
@@ -50,6 +51,28 @@ namespace Corelib.Utils
                 rng = MT19937.Create();
 
             return list[rng.NextInt(0, list.Count - 1)];
+        }
+
+        public static T Choice<T>(this List<T> list, MT19937 rng, List<float> weights)
+        {
+            if (list.Count == 0)
+                return default(T);
+            if (weights == null || weights.Count != list.Count)
+                throw new ArgumentException("weights must have the same size as the list");
+
+            var totalWeight = weights.Sum();
+            var randomNumber = rng.NextFloat(0, totalWeight);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (randomNumber < weights[i])
+                {
+                    return list[i];
+                }
+                randomNumber -= weights[i];
+            }
+
+            return list.Back();
         }
 
         public static List<T> Shuffle<T>(this List<T> list, MT19937 rng = null)
