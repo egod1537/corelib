@@ -144,6 +144,11 @@ namespace Corelib.Utils
             return NextUInt() * (1.0f / 4294967295.0f);
         }
 
+        public Vector3 NextVector3()
+        {
+            return new Vector3(NextFloat(), NextFloat(), NextFloat());
+        }
+
         public int NextInt(int min, int max)
         {
             float f = NextFloat();
