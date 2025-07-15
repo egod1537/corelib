@@ -77,6 +77,9 @@ namespace Corelib.SUI
         public static SEditorGUILayoutEnum Enum(string label, Enum value)
             => new SEditorGUILayoutEnum(label, value);
 
+        public static SEditorGUILayoutEnumFlags EnumFlags(string label, Enum value)
+            => new SEditorGUILayoutEnumFlags(label, value);
+
         public static SEditorGUILayoutGroup Group(string title)
             => new SEditorGUILayoutGroup(title);
 

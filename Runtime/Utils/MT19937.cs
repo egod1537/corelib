@@ -170,6 +170,8 @@ namespace Corelib.Utils
 
         public static float ImNextFloat(float min, float max)
             => Create().NextFloat(min, max);
+        public static int ImNextInt(int min, int max)
+            => Create().NextInt(min, max);
     }
 
 }

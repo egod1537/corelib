@@ -10,6 +10,7 @@ namespace Corelib.Utils
         private SOPresetConfig _config;
         private UnityEngine.Object _selectedAsset;
         private Editor _assetEditor;
+        private Vector2 _scrollPos;
 
         private SearchField _searchField;
         private string _searchText = string.Empty;
@@ -84,7 +85,9 @@ namespace Corelib.Utils
             {
                 EditorGUILayout.Space();
                 GUILayout.Label($"Editing: {_selectedAsset.name}", EditorStyles.boldLabel);
+                _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
                 _assetEditor.OnInspectorGUI();
+                EditorGUILayout.EndScrollView();
             }
         }
 

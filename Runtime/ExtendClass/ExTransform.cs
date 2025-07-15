@@ -5,6 +5,29 @@ namespace Corelib.Utils
 {
     public static class ExTransform
     {
+        public static T GetComponentInDirectChildren<T>(this Transform parent) where T : Component
+        {
+            foreach (Transform child in parent)
+            {
+                T component = child.GetComponent<T>();
+                if (component != null)
+                    return component;
+            }
+            return null;
+        }
+
+        public static List<T> GetComponentsInDirectChildren<T>(this Transform parent) where T : Component
+        {
+            List<T> components = new List<T>();
+            foreach (Transform child in parent)
+            {
+                T component = child.GetComponent<T>();
+                if (component != null)
+                    components.Add(component);
+            }
+            return components;
+        }
+
         public static Matrix4x4 ToMat(this Transform transform)
             => Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
 
@@ -107,6 +130,36 @@ namespace Corelib.Utils
             transform.localRotation = Quaternion.identity;
             transform.localScale = Vector3.one;
             return transform;
+        }
+
+        public static T GetComponentInParentOnly<T>(this Transform transform) where T : Component
+        {
+            Transform current = transform.parent;
+
+            while (current != null)
+            {
+                T component = current.GetComponent<T>();
+                if (component != null)
+                    return component;
+                current = current.parent;
+            }
+
+            return null;
+        }
+
+        public static T GetComponentInSelfOrParent<T>(this Transform transform) where T : Component
+        {
+            Transform current = transform;
+
+            while (current != null)
+            {
+                T component = current.GetComponent<T>();
+                if (component != null)
+                    return component;
+                current = current.parent;
+            }
+
+            return null;
         }
     }
 }

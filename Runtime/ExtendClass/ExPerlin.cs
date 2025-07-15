@@ -1,7 +1,6 @@
-using Corelib.Utils;
 using UnityEngine;
 
-namespace VoxelEngine
+namespace Corelib.Utils
 {
     public static class ExPerlin
     {

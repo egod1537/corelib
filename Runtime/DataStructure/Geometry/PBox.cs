@@ -69,6 +69,14 @@ namespace Corelib.Utils
                    (point.z >= min.z && point.z <= max.z);
         }
 
+        public bool ContainsXZ(Vector3 point)
+        {
+            Vector3 min = Min;
+            Vector3 max = Max;
+            return (point.x >= min.x && point.x <= max.x) &&
+                   (point.z >= min.z && point.z <= max.z);
+        }
+
         public bool Intersects(PBox other)
         {
             Vector3 aMin = Min;

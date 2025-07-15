@@ -26,5 +26,11 @@ namespace Corelib.Utils
 
         public static bool HasComponent<T>(this GameObject gameObject) where T : MonoBehaviour
             => gameObject.GetComponent<T>() != null;
+
+        public static T GetComponentInParentOnly<T>(this GameObject gameObject) where T : Component
+            => gameObject.transform.GetComponentInParentOnly<T>();
+
+        public static T GetComponentInSelfOrParent<T>(this GameObject gameObject) where T : Component
+            => gameObject.transform.GetComponentInSelfOrParent<T>();
     }
 }

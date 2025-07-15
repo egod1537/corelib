@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Corelib.Utils
 {
     [Serializable]
-    public class PBoxInt
+    public class PBoxInt : IEnumerable<Vector3Int>
     {
         public Vector3Int topLeft, bottomRight;
 
@@ -33,6 +33,19 @@ namespace Corelib.Utils
                 throw new ArgumentException($"Invalid cube bounds: topLeft {topLeft} must be less than or equal to bottomRight {bottomRight}.");
         }
 
+        public IEnumerator<Vector3Int> GetEnumerator()
+        {
+            for (int z = topLeft.z; z < bottomRight.z; z++)
+                for (int y = topLeft.y; y < bottomRight.y; y++)
+                    for (int x = topLeft.x; x < bottomRight.x; x++)
+                        yield return new Vector3Int(x, y, z);
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public bool Contains(Vector3 point, float margin)
         {
             Vector3 expandedMin = topLeft - Vector3.one * margin;
@@ -54,6 +67,12 @@ namespace Corelib.Utils
         {
             return point.x >= topLeft.x && point.x < bottomRight.x &&
                    point.y >= topLeft.y && point.y < bottomRight.y &&
+                   point.z >= topLeft.z && point.z < bottomRight.z;
+        }
+
+        public bool ContainsXZ(Vector3 point)
+        {
+            return point.x >= topLeft.x && point.x < bottomRight.x &&
                    point.z >= topLeft.z && point.z < bottomRight.z;
         }
 
