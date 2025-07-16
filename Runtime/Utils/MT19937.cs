@@ -149,6 +149,14 @@ namespace Corelib.Utils
             return new Vector3(NextFloat(), NextFloat(), NextFloat());
         }
 
+        public Vector3 NextVector3(Vector3 min, Vector3 max)
+        {
+            float x = NextFloat(min.x, max.x);
+            float y = NextFloat(min.y, max.y);
+            float z = NextFloat(min.z, max.z);
+            return new Vector3(x, y, z);
+        }
+
         public int NextInt(int min, int max)
         {
             float f = NextFloat();

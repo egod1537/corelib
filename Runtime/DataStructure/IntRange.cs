@@ -17,6 +17,12 @@ namespace Corelib.Utils
             Max = max;
         }
 
+        public IntRange(IntRange other)
+        {
+            this.Min = other.Min;
+            this.Max = other.Max;
+        }
+
         public int Length => Max - Min;
 
         public int Sample(MT19937 rng = null, bool isInclude = false)

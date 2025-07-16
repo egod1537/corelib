@@ -140,9 +140,9 @@ namespace Corelib.Utils
         {
             if (string.IsNullOrEmpty(key) || childMeshes == null) return;
 
-            if (childMeshes.TryGetValue(key, out var debugObject))
+            if (childMeshes.TryGetValue(key, out var mesh))
             {
-                debugObject.SetActive(active);
+                mesh.SetActive(active);
             }
         }
 

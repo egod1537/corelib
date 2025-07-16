@@ -57,6 +57,9 @@ namespace Corelib.SUI
         public static SEditorGUILayoutFloat Float(string prefix, float value)
             => new SEditorGUILayoutFloat(prefix, value);
 
+        public static SEditorGUILayoutColor Color(string prefix, Color color)
+            => new SEditorGUILayoutColor(prefix, color);
+
         public static SEditorGUILayoutMinMaxSlider MinMaxSlider(float minValue, float maxValue)
             => new SEditorGUILayoutMinMaxSlider(minValue, maxValue);
 

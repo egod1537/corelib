@@ -7,14 +7,14 @@ namespace Corelib.Utils
 {
     public class SOPresetEditor : EditorWindow
     {
-        private SOPresetConfig _config;
-        private UnityEngine.Object _selectedAsset;
+        [SerializeField] private SOPresetConfig _config;
+        [SerializeField] private UnityEngine.Object _selectedAsset;
         private Editor _assetEditor;
-        private Vector2 _scrollPos;
+        [SerializeField] private Vector2 _scrollPos;
 
         private SearchField _searchField;
-        private string _searchText = string.Empty;
-        private int _selectedPresetIndex = -1;
+        [SerializeField] private string _searchText = string.Empty;
+        [SerializeField] private int _selectedPresetIndex = -1;
 
         [MenuItem("Tools/SO Preset Editor")]
         public static void ShowWindow()
@@ -28,6 +28,10 @@ namespace Corelib.Utils
             titleContent = EditorGUIUtility.TrTextContent(
                 "SO Presets",
                 EditorGUIUtility.IconContent("ScriptableObject Icon").image);
+            if (_selectedAsset != null && _assetEditor == null)
+            {
+                _assetEditor = Editor.CreateEditor(_selectedAsset);
+            }
         }
 
         private void OnGUI()

@@ -12,14 +12,20 @@ namespace Corelib.Utils
             {
                 if (_instance != null) return _instance;
 
-                _instance = FindObjectOfType<T>();
+                var found = FindObjectsOfType<T>();
 
-                if (_instance == null)
+                if (found.Length == 0)
                 {
-                    var go = new GameObject($"[Singleton] {typeof(T)}");
-                    _instance = go.AddComponent<T>();
+                    Debug.LogError($"[Singleton] Instance of {typeof(T)} not found in scene.");
+                    return null;
                 }
 
+                if (found.Length > 1)
+                {
+                    Debug.LogError($"[Singleton] Multiple instances of {typeof(T)} found in scene.");
+                }
+
+                _instance = found[0];
                 return _instance;
             }
         }

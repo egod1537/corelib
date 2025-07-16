@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Corelib.Utils;
+using System.Text;
 
 namespace Corelib.Utils
 {
@@ -13,10 +13,11 @@ namespace Corelib.Utils
         protected virtual void Awake()
         {
             animators = new Dictionary<string, Animator>();
-            var allAnimators = GetComponentsInChildren<Animator>();
+            var allAnimators = GetComponentsInChildren<Animator>(true);
             foreach (var animator in allAnimators)
             {
-                animators[animator.name] = animator;
+                string path = GetPath(transform, animator.transform);
+                animators[path] = animator;
             }
             LifecycleInjectionUtil.ConstructLifecycleObjects(this);
         }
@@ -29,6 +30,29 @@ namespace Corelib.Utils
         protected virtual void OnDisable()
         {
             LifecycleInjectionUtil.OnDisable(this);
+        }
+
+        private string GetPath(Transform root, Transform leaf)
+        {
+            if (root == leaf)
+            {
+                return string.Empty;
+            }
+
+            StringBuilder pathBuilder = new StringBuilder();
+            Transform current = leaf;
+
+            while (current != null && current != root)
+            {
+                if (pathBuilder.Length > 0)
+                {
+                    pathBuilder.Insert(0, "/");
+                }
+                pathBuilder.Insert(0, current.name);
+                current = current.parent;
+            }
+
+            return pathBuilder.ToString();
         }
 
         public void PlayAnimation(string animationName, string partName = null)

@@ -13,7 +13,10 @@ namespace Corelib.Utils
         private void OnDrawGizmos()
         {
             Gizmos.color = gizmoColor;
-            Gizmos.DrawWireSphere(transform.position, radius);
+            Matrix4x4 prev = Gizmos.matrix;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+            Gizmos.DrawWireSphere(Vector3.zero, radius);
+            Gizmos.matrix = prev;
         }
     }
 }

@@ -13,16 +13,19 @@ namespace Corelib.Utils
         public Color gizmoColor = new(0f, 1f, 0f, 0.5f);
 
         public PCapsule Capsule => new PCapsule(transform.TransformPoint(center),
-                                                radius * GetMaxAbsScale(transform.lossyScale),
-                                                height * GetMaxAbsScale(transform.lossyScale),
+                                                radius,
+                                                height,
                                                 direction);
         private void OnDrawGizmos()
         {
             Gizmos.color = gizmoColor;
-            DrawWireCapsule(transform.TransformPoint(center), transform.rotation,
-                            radius * GetMaxAbsScale(transform.lossyScale),
-                            height * GetMaxAbsScale(transform.lossyScale),
+            Matrix4x4 prev = Gizmos.matrix;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+            DrawWireCapsule(center, Quaternion.identity,
+                            radius,
+                            height,
                             direction);
+            Gizmos.matrix = prev;
         }
 
         private static void DrawWireCapsule(Vector3 center, Quaternion rotation, float radius, float height, int direction)
@@ -65,11 +68,6 @@ namespace Corelib.Utils
             Gizmos.DrawLine(p1 - right * radius, p2 - right * radius);
             Gizmos.DrawLine(p1 + up * radius, p2 + up * radius);
             Gizmos.DrawLine(p1 - up * radius, p2 - up * radius);
-        }
-
-        private float GetMaxAbsScale(Vector3 scale)
-        {
-            return Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
         }
     }
 }
