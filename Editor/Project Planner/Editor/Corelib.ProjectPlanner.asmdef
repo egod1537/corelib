@@ -1,9 +1,7 @@
 {
-    "name": "Corelib.Editor",
+    "name": "Corelib.ProjectPlanner",
     "rootNamespace": "",
-    "references": [
-        "GUID:6d884aaed73b4fa4691936c4ce6fdd0a"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

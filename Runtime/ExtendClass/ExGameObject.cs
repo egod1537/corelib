@@ -32,5 +32,21 @@ namespace Corelib.Utils
 
         public static T GetComponentInSelfOrParent<T>(this GameObject gameObject) where T : Component
             => gameObject.transform.GetComponentInSelfOrParent<T>();
+
+        public static void SafeDestroy(this GameObject go)
+        {
+#if UNITY_EDITOR
+            if (Application.isPlaying)
+            {
+                Object.Destroy(go);
+            }
+            else
+            {
+                Object.DestroyImmediate(go);
+            }
+#else
+        Object.Destroy(go);
+#endif
+        }
     }
 }

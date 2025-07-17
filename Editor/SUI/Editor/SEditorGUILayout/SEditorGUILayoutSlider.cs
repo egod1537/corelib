@@ -6,13 +6,15 @@ namespace Corelib.SUI
 {
     public class SEditorGUILayoutSlider : SUIElement
     {
+        private string preifx;
         private float value;
         private float minValue;
         private float maxValue;
         private UnityAction<float> onValueChanged;
 
-        public SEditorGUILayoutSlider(float value, float minValue, float maxValue)
+        public SEditorGUILayoutSlider(string preifx, float value, float minValue, float maxValue)
         {
+            this.preifx = preifx;
             this.value = value;
             this.minValue = minValue;
             this.maxValue = maxValue;
@@ -26,7 +28,7 @@ namespace Corelib.SUI
 
         public override void Render()
         {
-            float newValue = EditorGUILayout.Slider(value, minValue, maxValue);
+            float newValue = EditorGUILayout.Slider(preifx, value, minValue, maxValue);
             if (newValue != value)
             {
                 value = newValue;

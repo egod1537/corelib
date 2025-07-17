@@ -22,9 +22,6 @@ namespace Corelib.SUI
         public static SEditorGUILayoutToggle Toggle(Rect rect, string label, bool value)
             => new SEditorGUILayoutToggle(label, value);
 
-        public static SEditorGUILayoutSlider Slider(Rect rect, float value, float minValue = 0f, float maxValue = 1.0f)
-            => new SEditorGUILayoutSlider(value, minValue, maxValue);
-
         public static SEditorGUILayoutFoldoutHeaderGroup FoldoutHeaderGroup(string prefix, bool foldout) =>
             new SEditorGUILayoutFoldoutHeaderGroup(prefix, foldout);
 

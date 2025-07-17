@@ -18,7 +18,8 @@ namespace Corelib.Utils
 
         public static SUIElement Render<TKey, TValue>(
             StableEnumDictionary<TKey, TValue> dictionary,
-            Action onModified = null)
+            Action onModified = null,
+            Func<TValue, Action<TValue>, SUIElement> customValueRenderer = null)
             where TKey : Enum
         {
             if (dictionary == null)
@@ -35,34 +36,6 @@ namespace Corelib.Utils
             var originalLabelWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = 60f;
 
-            // 기존 항목 렌더링
-            foreach (var kvp in dictionary.EnumPairs.ToList())
-            {
-                var currentKey = kvp.Key;
-                elements.Add(
-                    SEditorGUILayout.Horizontal()
-                        .Content(
-                            RenderField("Key", currentKey, _ => { }, readOnly: true)
-                            + RenderField("Value", kvp.Value, v =>
-                              {
-                                  dictionary[currentKey] = v;
-                                  onModified?.Invoke();
-                                  GUI.changed = true;
-                              })
-                            + SEditorGUILayout.Button("-").Width(20)
-                                .OnClick(() =>
-                                {
-                                    dictionary.Remove(currentKey);
-                                    onModified?.Invoke();
-                                    GUI.changed = true;
-                                })
-                        )
-                );
-            }
-
-            elements.Add(SEditorGUILayout.Separator());
-            elements.Add(SEditorGUILayout.Space(2));
-
             elements.Add(
                 SEditorGUILayout.Horizontal()
                     .Content(
@@ -71,11 +44,17 @@ namespace Corelib.Utils
                             newKey = val;
                             TempCache<TKey, TValue>.NewKey = val;
                         })
-                        + RenderField("New Value", newValue, val =>
-                        {
-                            newValue = val;
-                            TempCache<TKey, TValue>.NewValue = val;   // ← 핵심!
-                        })
+                        + (customValueRenderer != null
+                            ? customValueRenderer(newValue, val =>
+                                {
+                                    newValue = val;
+                                    TempCache<TKey, TValue>.NewValue = val;   // ← 핵심!
+                                })
+                            : RenderField("New Value", newValue, val =>
+                                {
+                                    newValue = val;
+                                    TempCache<TKey, TValue>.NewValue = val;   // ← 핵심!
+                                }))
                         + SEditorGUILayout.Button("+").Width(20)
                             .OnClick(() =>
                             {
@@ -93,6 +72,40 @@ namespace Corelib.Utils
                             })
                     )
             );
+            elements.Add(SEditorGUILayout.Separator());
+            elements.Add(SEditorGUILayout.Space(2));
+
+            // 기존 항목 렌더링
+            foreach (var kvp in dictionary.EnumPairs.ToList())
+            {
+                var currentKey = kvp.Key;
+                elements.Add(
+                    SEditorGUILayout.Horizontal()
+                        .Content(
+                            RenderField("Key", currentKey, _ => { }, readOnly: true)
+                            + (customValueRenderer != null
+                                ? customValueRenderer(kvp.Value, v =>
+                                    {
+                                        dictionary[currentKey] = v;
+                                        onModified?.Invoke();
+                                        GUI.changed = true;
+                                    })
+                                : RenderField("Value", kvp.Value, v =>
+                                    {
+                                        dictionary[currentKey] = v;
+                                        onModified?.Invoke();
+                                        GUI.changed = true;
+                                    }))
+                            + SEditorGUILayout.Button("-").Width(20)
+                                .OnClick(() =>
+                                {
+                                    dictionary.Remove(currentKey);
+                                    onModified?.Invoke();
+                                    GUI.changed = true;
+                                })
+                        )
+                );
+            }
 
             // labelWidth 원복
             elements.Add(SEditorGUILayout.Action(() =>

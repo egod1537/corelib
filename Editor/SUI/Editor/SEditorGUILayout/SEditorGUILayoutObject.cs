@@ -14,6 +14,8 @@ namespace Corelib.SUI
         private Type type;
         private UnityAction<UObject> onValueChanged;
 
+        private float? width;
+
         public SEditorGUILayoutObject(string label, UObject value, Type type)
         {
             this.label = label;
@@ -27,9 +29,19 @@ namespace Corelib.SUI
             return this;
         }
 
+        public SEditorGUILayoutObject Width(float width)
+        {
+            this.width = width;
+            return this;
+        }
+
+
         public override void Render()
         {
-            UObject newValue = EditorGUILayout.ObjectField(label, value, type, true);
+            List<GUILayoutOption> options = new();
+            if (width != null) options.Add(GUILayout.Width(width.Value));
+
+            UObject newValue = EditorGUILayout.ObjectField(label, value, type, true, options.ToArray());
             if (newValue != value)
             {
                 value = newValue;
