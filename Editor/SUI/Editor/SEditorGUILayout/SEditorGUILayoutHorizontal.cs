@@ -8,6 +8,7 @@ namespace Corelib.SUI
     {
         private SUIElement content;
         private string style = "";
+        private float? labelWidth;
 
 
         public SEditorGUILayoutHorizontal()
@@ -32,10 +33,19 @@ namespace Corelib.SUI
             return this;
         }
 
+        public SEditorGUILayoutHorizontal LabelWidth(float labelWidth)
+        {
+            this.labelWidth = labelWidth;
+            return this;
+        }
+
         public override void Render()
         {
-            EditorGUILayout.BeginHorizontal(style);
+            EditorGUILayout.BeginHorizontal(string.IsNullOrWhiteSpace(style) ? GUIStyle.none : style);
+            var originalLabelWidth = EditorGUIUtility.labelWidth;
+            if (labelWidth != null) EditorGUIUtility.labelWidth = labelWidth.Value;
             content?.Render();
+            if (labelWidth != null) EditorGUIUtility.labelWidth = originalLabelWidth;
             EditorGUILayout.EndHorizontal();
         }
     }

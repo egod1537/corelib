@@ -18,6 +18,9 @@ namespace Corelib.SUI
         public static SEditorGUILayoutButton Button(string label)
             => new SEditorGUILayoutButton(label);
 
+        public static SEditorGUILayoutButton Button(GUIContent guiContent)
+            => new SEditorGUILayoutButton(guiContent);
+
         public static SEditorGUILayoutHorizontal Horizontal(string style = "") =>
             new SEditorGUILayoutHorizontal(style);
 

@@ -12,6 +12,7 @@ namespace Corelib.SUI
         private string label;
         private Enum value;
         private UnityAction<Enum> onValueChanged;
+        private float? width;
 
         public SEditorGUILayoutEnum(string label, Enum value)
         {
@@ -25,9 +26,18 @@ namespace Corelib.SUI
             return this;
         }
 
+        public SEditorGUILayoutEnum Width(float width)
+        {
+            this.width = width;
+            return this;
+        }
+
         public override void Render()
         {
-            Enum newValue = EditorGUILayout.EnumPopup(label, value);
+            List<GUILayoutOption> options = new();
+            if (width != null) options.Add(GUILayout.Width(width.Value));
+
+            Enum newValue = EditorGUILayout.EnumPopup(label, value, options.ToArray());
             if (newValue != value)
             {
                 value = newValue;

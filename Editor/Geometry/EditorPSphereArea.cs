@@ -19,7 +19,8 @@ public class EditorPSphereArea : Editor
 
         var sphere = script.Sphere;
 
-        SEditorGUI.ChangeCheck(target,
+        SEditorGUI.ChangeCheck(
+            target,
             SEditorGUILayout.Float("Radius", script.radius)
             .OnValueChanged(value => script.radius = value)
             + SEditorGUILayout.Color("Color", script.gizmoColor)
@@ -32,7 +33,8 @@ public class EditorPSphereArea : Editor
                         + SEditorGUILayout.Float("Radius", sphere.radius)
                     )
                 )
-        );
+        )
+        .Render();
 
         serializedObject.ApplyModifiedProperties();
     }

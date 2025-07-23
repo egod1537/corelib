@@ -8,6 +8,7 @@ namespace Corelib.SUI
     public class SEditorGUILayoutButton : SUIElement, IWidthable<SEditorGUILayoutButton>
     {
         private readonly string label;
+        private readonly GUIContent guiContent;
         private UnityAction onClick;
         private float? width;
         private Func<bool> where = () => true;
@@ -15,6 +16,11 @@ namespace Corelib.SUI
         public SEditorGUILayoutButton(string label)
         {
             this.label = label;
+        }
+
+        public SEditorGUILayoutButton(GUIContent guiContent)
+        {
+            this.guiContent = guiContent;
         }
 
         public SEditorGUILayoutButton Where(Func<bool> where)
@@ -45,10 +51,21 @@ namespace Corelib.SUI
                 options.Add(GUILayout.Width(width.Value));
             }
 
-            if (GUILayout.Button(label, options.ToArray()))
+            if (guiContent != null)
             {
-                onClick?.Invoke();
+                if (GUILayout.Button(guiContent, options.ToArray()))
+                {
+                    onClick?.Invoke();
+                }
             }
+            else
+            {
+                if (GUILayout.Button(label, options.ToArray()))
+                {
+                    onClick?.Invoke();
+                }
+            }
+
         }
     }
 }

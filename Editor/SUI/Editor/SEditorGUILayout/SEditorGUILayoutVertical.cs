@@ -50,7 +50,7 @@ namespace Corelib.SUI
             if (guiStyle != null)
                 EditorGUILayout.BeginVertical(guiStyle);
             else
-                EditorGUILayout.BeginVertical(style);
+                EditorGUILayout.BeginVertical(string.IsNullOrWhiteSpace(style) ? GUIStyle.none : style);
 
             if (where())
                 content?.Render();

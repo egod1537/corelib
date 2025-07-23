@@ -19,7 +19,8 @@ public class EditorPCapsuleArea : Editor
 
         var capsule = script.Capsule;
 
-        SEditorGUI.ChangeCheck(target,
+        SEditorGUI.ChangeCheck(
+            target,
             SEditorGUILayout.Vertical()
             .Content(
                 SEditorGUILayout.Vector3("Center", script.center)
@@ -42,7 +43,8 @@ public class EditorPCapsuleArea : Editor
                         )
                     )
             )
-        );
+        )
+        .Render();
 
         serializedObject.ApplyModifiedProperties();
     }
