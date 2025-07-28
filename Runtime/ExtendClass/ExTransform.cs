@@ -34,9 +34,9 @@ namespace Corelib.Utils
         public static void DestroyAllChild(this Transform transform)
         {
             int len = transform.childCount;
-            for (int i = 0; i < len; i++)
+            for (int i = len - 1; i >= 0; i--)
             {
-                Object.Destroy(transform.GetChild(0).gameObject);
+                Object.Destroy(transform.GetChild(i).gameObject);
             }
         }
 

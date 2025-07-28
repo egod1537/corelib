@@ -17,6 +17,12 @@ namespace Corelib.Utils
             Max = max;
         }
 
+        public FloatRange(FloatRange other)
+        {
+            Min = other.Min;
+            Max = other.Max;
+        }
+
         public float Length => Max - Min;
 
         public float Sample(MT19937 rng = null)

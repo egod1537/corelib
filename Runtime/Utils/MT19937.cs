@@ -157,6 +157,26 @@ namespace Corelib.Utils
             return new Vector3(x, y, z);
         }
 
+        public Quaternion NextQuaternion()
+        {
+            float u1 = NextFloat();
+            float u2 = NextFloat();
+            float u3 = NextFloat();
+
+            float sqrt1MinusU1 = Mathf.Sqrt(1f - u1);
+            float sqrtU1 = Mathf.Sqrt(u1);
+
+            float twoPiU2 = 2f * Mathf.PI * u2;
+            float twoPiU3 = 2f * Mathf.PI * u3;
+
+            float x = sqrt1MinusU1 * Mathf.Sin(twoPiU2);
+            float y = sqrt1MinusU1 * Mathf.Cos(twoPiU2);
+            float z = sqrtU1 * Mathf.Sin(twoPiU3);
+            float w = sqrtU1 * Mathf.Cos(twoPiU3);
+
+            return new Quaternion(x, y, z, w);
+        }
+
         public int NextInt(int min, int max)
         {
             float f = NextFloat();

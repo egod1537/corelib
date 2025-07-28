@@ -68,7 +68,27 @@ namespace Corelib.Utils
             int newIndex = _selectedPresetIndex;
             if (presetNames.Length > 0)
             {
+                EditorGUILayout.BeginHorizontal();
                 newIndex = EditorGUILayout.Popup("Select Preset", Mathf.Clamp(_selectedPresetIndex, 0, presetNames.Length - 1), presetNames);
+                if (GUILayout.Button("Select", GUILayout.Width(60)))
+                {
+                    if (_selectedPresetIndex >= 0 && _selectedPresetIndex < filteredPresets.Count)
+                    {
+                        var preset = filteredPresets[_selectedPresetIndex];
+                        var asset = Resources.Load(preset.resourcePath);
+                        if (asset != null)
+                        {
+                            EditorUtility.FocusProjectWindow();
+                            Selection.activeObject = asset;
+                            EditorGUIUtility.PingObject(asset);
+                        }
+                        else
+                        {
+                            Debug.LogError($"[SOPresetEditor] Asset not found at Resources path: '{preset.resourcePath}'");
+                        }
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
             }
             else
             {

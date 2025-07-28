@@ -157,7 +157,7 @@ namespace Corelib.Utils
 
         public void ClearMeshAll()
         {
-            meshRoot.DestroyImmediateAllChild();
+            meshRoot.DestroyAllChildrenWithEditor();
             childMeshes?.Clear();
         }
 

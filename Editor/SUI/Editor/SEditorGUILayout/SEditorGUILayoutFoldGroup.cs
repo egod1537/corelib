@@ -9,6 +9,7 @@ namespace Corelib.SUI
         private string label;
         private bool value;
         private SUIElement content;
+        private SUIElement headerRight;
         private UnityAction<bool> onValueChanged;
 
         public SEditorGUILayoutFoldGroup(string label, bool value)
@@ -29,6 +30,12 @@ namespace Corelib.SUI
             return this;
         }
 
+        public SEditorGUILayoutFoldGroup HeaderRight(SUIElement headerRight)
+        {
+            this.headerRight = headerRight;
+            return this;
+        }
+
         public override void Render()
         {
             SEditorGUILayout.Vertical()
@@ -44,6 +51,7 @@ namespace Corelib.SUI
                             this.value = value;
                             onValueChanged?.Invoke(value);
                         })
+                        + (headerRight ?? SUIElement.Empty())
                     )
                 )
                 + SEditorGUILayout.Vertical("helpbox")
