@@ -45,7 +45,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             if (guiStyle != null)
                 EditorGUILayout.BeginVertical(guiStyle);

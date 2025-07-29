@@ -21,7 +21,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             int newIndex = GUILayout.Toolbar(selected, labels);
             if (newIndex != selected)

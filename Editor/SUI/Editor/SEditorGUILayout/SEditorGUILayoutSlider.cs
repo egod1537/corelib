@@ -26,7 +26,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             float newValue = EditorGUILayout.Slider(preifx, value, minValue, maxValue);
             if (newValue != value)

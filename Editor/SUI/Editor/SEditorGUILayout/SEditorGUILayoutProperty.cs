@@ -22,7 +22,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             EditorGUILayout.PropertyField(property, guiContent, true);
         }

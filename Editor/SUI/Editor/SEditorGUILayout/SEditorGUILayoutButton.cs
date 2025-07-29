@@ -41,7 +41,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             if (!where()) return;
             var options = new List<GUILayoutOption>();

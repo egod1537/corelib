@@ -22,7 +22,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             Vector3 newValue = EditorGUILayout.Vector3Field(prefix, value);
             if (newValue != value)

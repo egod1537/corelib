@@ -37,7 +37,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             List<GUILayoutOption> options = new();
             if (width != null) options.Add(GUILayout.Width(width.Value));

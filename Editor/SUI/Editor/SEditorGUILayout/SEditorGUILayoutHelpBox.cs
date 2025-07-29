@@ -28,7 +28,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             if (where())
                 EditorGUILayout.HelpBox(label, messageType);

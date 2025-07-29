@@ -30,7 +30,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             bool newValue = EditorGUILayout.BeginFoldoutHeaderGroup(value, label);
             if (newValue != value)

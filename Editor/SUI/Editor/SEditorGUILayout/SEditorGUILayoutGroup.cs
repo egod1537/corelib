@@ -28,7 +28,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public void Render()
+        public override void Render()
         {
             SEditorGUILayout.Vertical("box")
             .Content(
