@@ -25,7 +25,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             GUILayout.BeginHorizontal(string.IsNullOrWhiteSpace(style) ? GUIStyle.none : style);
             content?.Render();

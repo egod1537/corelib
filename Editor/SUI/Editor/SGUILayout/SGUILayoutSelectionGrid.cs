@@ -32,7 +32,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             int newValue = GUILayout.SelectionGrid(value, guiContents.ToArray(), columnCount);
 

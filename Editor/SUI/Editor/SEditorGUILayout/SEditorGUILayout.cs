@@ -107,5 +107,8 @@ namespace Corelib.SUI
 
         public static SEditorGUILayoutHelpBox HelpBox(string label, MessageType messageType)
             => new SEditorGUILayoutHelpBox(label, messageType);
+
+        public static SEditorGUILayoutToolbar Toolbar(int selected, params string[] labels)
+            => new SEditorGUILayoutToolbar(selected, labels);
     }
 }

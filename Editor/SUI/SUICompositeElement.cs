@@ -10,7 +10,7 @@ namespace Corelib.SUI
             this.elements.AddRange(elements);
         }
 
-        public override void Render()
+        public void Render()
         {
             foreach (var element in elements)
                 element.Render();

@@ -12,6 +12,7 @@ namespace Corelib.SUI
         private float? width;
         private bool isBold = false;
         private TextAnchor? textAnchor;
+        private Color? color;
         private UnityAction<int> onValueChanged;
 
         public SEditorGUILayoutLabel(string label)
@@ -37,7 +38,13 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public SEditorGUILayoutLabel Color(Color color)
+        {
+            this.color = color;
+            return this;
+        }
+
+        public void Render()
         {
             List<GUILayoutOption> options = new();
             if (width != null) options.Add(GUILayout.Width(width.Value));
@@ -45,6 +52,7 @@ namespace Corelib.SUI
             GUIStyle guiStyle = new GUIStyle(EditorStyles.label);
             if (isBold) guiStyle.fontStyle = FontStyle.Bold;
             if (textAnchor != null) guiStyle.alignment = textAnchor.Value;
+            if (color != null) guiStyle.normal.textColor = color.Value;
 
             EditorGUILayout.LabelField(label, guiStyle, options.ToArray());
         }

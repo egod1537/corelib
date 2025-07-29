@@ -26,7 +26,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             Matrix4x4 prevMat = Gizmos.matrix;
             Color prevColor = Gizmos.color;

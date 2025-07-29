@@ -25,7 +25,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             Enum newValue = EditorGUILayout.EnumFlagsField(label, value);
             if (newValue != value)

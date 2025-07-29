@@ -26,7 +26,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             if (GUILayout.Button(label, guiStyle))
                 onClick?.Invoke();

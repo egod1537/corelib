@@ -49,8 +49,6 @@ namespace Corelib.Utils
             return null;
         }
 
-        public abstract void Render();
-
         public List<T> FindAllChild<T>() where T : ViewBehaviour<R>
         {
             List<T> childs = new List<T>();

@@ -33,7 +33,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             EditorGUI.BeginDisabledGroup(disabled);
             if (where())

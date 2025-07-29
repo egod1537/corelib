@@ -39,7 +39,7 @@ namespace Corelib.SUI
             return this;
         }
 
-        public override void Render()
+        public void Render()
         {
             EditorGUILayout.BeginHorizontal(string.IsNullOrWhiteSpace(style) ? GUIStyle.none : style);
             var originalLabelWidth = EditorGUIUtility.labelWidth;
