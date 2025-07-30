@@ -4,5 +4,5 @@ using UnityEngine;
 namespace Corelib.Utils
 {
     [AttributeUsage(AttributeTargets.Field)]
-    public class AutoUIElementBindAttribute : PropertyAttribute { }
+    public class UIElementBindAttribute : PropertyAttribute { }
 }

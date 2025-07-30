@@ -49,6 +49,15 @@ namespace Corelib.Utils
 #endif
         }
 
+        public static void SafeDestroyAllChild(this GameObject go)
+        {
+            Transform tr = go.transform;
+            for (int i = tr.childCount - 1; i >= 0; i--)
+            {
+                tr.GetChild(i).gameObject.SafeDestroy();
+            }
+        }
+
         public static void SetLayerRecursively(this GameObject gameObject, int newLayer)
         {
             if (gameObject == null) return;

@@ -6,8 +6,8 @@ using System.Reflection;
 
 namespace Corelib.Utils
 {
-    [CustomPropertyDrawer(typeof(AutoUIElementBindAttribute))]
-    public class AutoUIElementBindDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(UIElementBindAttribute))]
+    public class UIElementBindDrawer : PropertyDrawer
     {
         private const float BtnWidth = 45f;
         private const string Prefix = "<ui>";
@@ -37,7 +37,7 @@ namespace Corelib.Utils
 
             if (tr == null)
             {
-                Debug.LogError($"[AutoBind] '{prefixed}' 또는 '{prop.name}' 못 찾음", mono);
+                Debug.LogError($"[Bind] '{prefixed}' 또는 '{prop.name}' 못 찾음", mono);
                 return;
             }
 
@@ -49,12 +49,12 @@ namespace Corelib.Utils
 
             if (valObj == null)
             {
-                Debug.LogError($"[AutoBind] 타입 불일치: {t}", mono);
+                Debug.LogError($"[Bind] 타입 불일치: {t}", mono);
                 return;
             }
 
             // Undo + 값 세팅
-            Undo.RecordObject(mono, "AutoBind UI Element");
+            Undo.RecordObject(mono, "Bind UI Element");
             fieldInfo.SetValue(mono, valObj);
             prop.objectReferenceValue = valObj as UnityEngine.Object;
 

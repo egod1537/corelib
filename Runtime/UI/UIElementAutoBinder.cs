@@ -24,7 +24,7 @@ namespace Corelib.Utils
         {
             var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var fields = _mono.GetType().GetFields(flags)
-                              .Where(f => Attribute.IsDefined(f, typeof(AutoUIElementBindAttribute)));
+                              .Where(f => Attribute.IsDefined(f, typeof(UIElementBindAttribute)));
 
             foreach (var field in fields)
             {
