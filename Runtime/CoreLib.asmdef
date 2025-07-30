@@ -2,7 +2,8 @@
     "name": "CoreLib",
     "rootNamespace": "",
     "references": [
-        "GUID:ca937d03ee5dd4d699091438dc0f3ae6"
+        "GUID:ca937d03ee5dd4d699091438dc0f3ae6",
+        "GUID:324caed91501a9c47a04ebfd87b68794"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
