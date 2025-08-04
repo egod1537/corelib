@@ -6,11 +6,11 @@ using System.Reflection;
 
 namespace Corelib.Utils
 {
-    [CustomPropertyDrawer(typeof(UIElementBindAttribute))]
-    public class UIElementBindDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(ReferenceBindAttribute))]
+    public class ReferenceBindDrawer : PropertyDrawer
     {
         private const float BtnWidth = 45f;
-        private const string Prefix = "<ui>";
+        private const string Prefix = "<ref>";
 
         public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
         {

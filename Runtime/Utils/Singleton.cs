@@ -16,7 +16,6 @@ namespace Corelib.Utils
 
                 if (found.Length == 0)
                 {
-                    Debug.LogError($"[Singleton] Instance of {typeof(T)} not found in scene.");
                     return null;
                 }
 

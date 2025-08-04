@@ -6,12 +6,12 @@ using UnityEngine.Events;
 
 namespace Corelib.Utils
 {
-    public class AutoUIElementBinder : ILifecycleInjectable
+    public class AutoReferenceBinder : ILifecycleInjectable
     {
         private readonly MonoBehaviour _mono;
         private const string Prefix = "<ui>";
 
-        public AutoUIElementBinder(MonoBehaviour mono)
+        public AutoReferenceBinder(MonoBehaviour mono)
         {
             _mono = mono;
             BindAllFields();
@@ -24,7 +24,7 @@ namespace Corelib.Utils
         {
             var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             var fields = _mono.GetType().GetFields(flags)
-                              .Where(f => Attribute.IsDefined(f, typeof(UIElementBindAttribute)));
+                              .Where(f => Attribute.IsDefined(f, typeof(ReferenceBindAttribute)));
 
             foreach (var field in fields)
             {
