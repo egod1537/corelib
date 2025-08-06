@@ -84,12 +84,25 @@ namespace Corelib.Utils
 
         public static void SetActiveWithChild(this Transform transform, bool active)
         {
+            transform.SetActiveChild(active);
+            transform.gameObject.SetActive(active);
+        }
+
+        public static void SetActiveAllChild(this Transform transform, bool active)
+        {
             List<Transform> children = transform.Children();
             foreach (var child in children)
             {
                 child.gameObject.SetActive(active);
             }
-            transform.gameObject.SetActive(active);
+        }
+
+        public static void SetActiveChild(this Transform transform, bool active)
+        {
+            foreach (Transform childTransform in transform)
+            {
+                childTransform.gameObject.SetActive(active);
+            }
         }
 
         public static void SetHideFlagWithChild(this Transform transform, HideFlags hideFlags)

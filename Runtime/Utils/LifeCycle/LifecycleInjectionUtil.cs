@@ -44,6 +44,7 @@ namespace Corelib.Utils
         }
 
         public static void OnEnable(object target) => CallLifecycleMethod(target, enable: true);
+        public static void Start(object target) => CallStartMethod(target);
         public static void OnDisable(object target) => CallLifecycleMethod(target, enable: false);
 
         private static void CallLifecycleMethod(object target, bool enable)
@@ -61,6 +62,22 @@ namespace Corelib.Utils
                         injectable.OnEnable();
                     else
                         injectable.OnDisable();
+                }
+            }
+        }
+
+        private static void CallStartMethod(object target)
+        {
+            var fields = target.GetType().GetFields(_flags);
+
+            foreach (var field in fields)
+            {
+                if (field.GetCustomAttribute<LifecycleInjectAttribute>() == null)
+                    continue;
+
+                if (field.GetValue(target) is ILifecycleInjectable injectable)
+                {
+                    injectable.Start();
                 }
             }
         }
